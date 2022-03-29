@@ -16,6 +16,12 @@ Http_server::Http_server() : AServer(AF_INET, SOCK_STREAM, 0, 8500, INADDR_ANY, 
 
 void Http_server::launch()
 {
+	int yes=1;
+	if (setsockopt(getsocket()->get_sock(), SOL_SOCKET,SO_REUSEADDR, &yes, sizeof(int)) == -1) 
+	{
+		perror("«setsockopt»");
+		exit(1);
+	}
 	while (true)
 	{
 		std::cout << "===========Waiting==========\n";
@@ -51,7 +57,7 @@ void Http_server::responder()
         << "<h1>Test page</h1>\n"
         << "<p>This is body of the test page...</p>\n"
         << "<h2>Request headers</h2>\n"
-        << "<pre>" << buf << "</pre>\n"
+        << "<pre>" << arr << "</pre>\n"
         << "<em><small>Test C++ Http Server</small></em>\n";
 
     // Формируем весь ответ вместе с заголовками

@@ -11,7 +11,6 @@ class Http_server: AServer
 private:
 	char		arr[1024];
 	int			new_socket;
-	char		buf[1024];
 	void accepter();
 	void handler();
 	void responder();

@@ -5,6 +5,8 @@
 #include <netinet/in.h>
 #include <stdio.h>
 #include <iostream>
+#include <unistd.h>
+#include <stdlib.h>
 
 class ASocket
 {
